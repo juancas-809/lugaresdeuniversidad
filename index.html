@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colección de zapatos</title>
+    <title>lugaresdelauniversidad</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
     <style>
         body {
@@ -43,12 +43,12 @@
 
 <body>
     <div class="container">
-        <h1>¿Cuántos zapatos hay en mi colección?</h1>
+        <h1>¿Cuántos lugares hay en mi universidad?</h1>
         <div id="data">Cargando datos ...</div>
     </div>
     <script>document.addEventListener('DOMContentLoaded', function () {
             function fetchPostCount() {
-                const url = 'https://public-api.wordpress.com/rest/v1.1/sites/coleccionzapatos.wordpress.com/posts/';
+                const url = 'https://public-api.wordpress.com/rest/v1.1/sites/lugaresdeuniversidad.wordpress.com/posts/';
 
                 fetch(url).then(response => {
                     if (!response.ok) {
@@ -58,7 +58,7 @@
                     return response.json();
 
                 }).then(data => {
-                    document.getElementById('data').textContent = 'Hay ' + data.found + ' zapatos en mi colección';
+                    document.getElementById('data').textContent = 'Hay ' + data.found + ' lugares de mi universidad';
                     return data.found;
 
                 }).catch(error => {
