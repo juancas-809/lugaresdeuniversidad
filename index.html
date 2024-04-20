@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colección de zapatos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <style>
+        body {
+
+            background-color: #1e1e1e;
+            color: antiquewhite;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            color: aliceblue;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centrado horizontal dentro del contenedor */
+            justify-content: center;
+            /* Centrado vertical dentro del contenedor */
+            height: 100vh;
+            /* Asegura que el contenedor tenga toda la altura de la ventana */
+            text-align: center;
+            /* Alinea el texto al centro de sus contenedores */
+        }
+
+        #data {
+            font-size: 24px;
+            /* Aumenta el tamaño del texto para mayor visibilidad */
+            margin-top: 20px;
+            /* Espacio entre el título y los datos */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>¿Cuántos zapatos hay en mi colección?</h1>
+        <div id="data">Cargando datos ...</div>
+    </div>
+    <script>document.addEventListener('DOMContentLoaded', function () {
+            function fetchPostCount() {
+                const url = 'https://public-api.wordpress.com/rest/v1.1/sites/coleccionzapatos.wordpress.com/posts/';
+
+                fetch(url).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    return response.json();
+
+                }).then(data => {
+                    document.getElementById('data').textContent = 'Hay ' + data.found + ' zapatos en mi colección';
+                    return data.found;
+
+                }).catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+            }
+
+            fetchPostCount();
+        });
+    </script>
+</body>
+
+</html>
